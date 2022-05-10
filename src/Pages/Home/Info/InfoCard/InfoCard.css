@@ -1,0 +1,19 @@
+.info-card:nth-child(2){
+    background: linear-gradient(90deg, #4F5B7A,#3A4256);
+}
+
+.info-card:hover{
+    animation: card 0.7s ease-in-out infinite;
+}
+
+@keyframes card{
+    0%{
+        transform: scale(0.95);
+    }
+    50%{
+        transform: scale(1);
+    }
+    100%{
+        transform: scale(0.95);
+    }
+}
