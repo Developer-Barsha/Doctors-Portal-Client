@@ -5,10 +5,9 @@ import './Banner.css'
 const Banner = () => {
     return (
         <section className='hero '>
-            <div className='banner hover:bg-top bg-no-repeat ease-in-out duration-300 backdrop-blur-sm bg-contain py-6 flex items-center justify-between px-5 lg:flex-row-reverse'>
-            {/* <div className='banner bg-banner-bg hover:bg-top bg-no-repeat ease-in-out duration-300 backdrop-blur-sm bg-contain py-6 flex items-center justify-between px-5 lg:flex-row-reverse'> */}
+            <div className='banner bg-banner-bg bg-left-bottom bg-no-repeat ease-in-out duration-300 backdrop-blur-sm bg-contain py-6 flex items-center justify-between px-5 lg:flex-row-reverse'>
                 <div>
-                    <img src={chair} alt="" />
+                    <img src={chair} className='rounded hover:shadow-xl hover:scale-105' alt="" />
                 </div>
                 <div>
                     <h1 className='text-5xl font-bold mb-4'>Your New Smile Starts Here</h1>
