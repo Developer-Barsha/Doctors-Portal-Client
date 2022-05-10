@@ -2,9 +2,9 @@ module.exports = {
   content: ["./src/**/*.{html,js}"],
   theme: {
     extend: {
-      // backgroundImage: {
-      //   'banner-bg': "url('/src/assets/images/bg.png')"
-      // }
+      backgroundImage: {
+        'banner-bg': "url('/src/assets/images/bg.png')"
+      }
     }
   },
   daisyui: {
