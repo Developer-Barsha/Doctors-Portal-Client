@@ -12,7 +12,7 @@ const Info = () => {
     ]
 
     return (
-        <div className='grid grid-cols-1 lg:grid-cols-3 gap-4 py-5 px-8'>
+        <div className='grid sm:grid-cols-1 md:grid-cols-2 px-8 lg:grid-cols-3 gap-4 py-5'>
             {
                 infos.map(info=><InfoCard key={info.id} info={info} />)
             }
