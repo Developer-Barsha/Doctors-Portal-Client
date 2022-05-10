@@ -1,9 +1,6 @@
-.info-card:nth-child(2){
-    background: linear-gradient(90deg, #4F5B7A,#3A4256);
-}
-
 .info-card:hover{
     animation: card 0.7s ease-in-out infinite;
+    box-shadow: 5px 5px 20px #999;
 }
 
 @keyframes card{

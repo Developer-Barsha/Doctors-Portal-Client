@@ -21,10 +21,11 @@
     padding: 20px;
 }
 
-.banner button:hover{
+.my-button:hover{
     color: #3A4256;
     transition: 0.5s;
     transform: scale(0.95);
+    border-radius: 0 5px 0 5px;
 }
 
 @media only screen and (max-width:800px) {
