@@ -29,9 +29,6 @@ const Navbar = () => {
                     {menuItems}
                 </ul>
             </div>
-            <div class="navbar-end">
-                <a href="/" class="btn">Register</a>
-            </div>
         </div>
     );
 };
