@@ -29,22 +29,20 @@ const Testimonials = () => {
     ]
 
     return (
-        <section className='px-8 bg-testimonial-bg bg-no-repeat' style={{backgroundSize:'15%', backgroundPositionX:'95%'}}>
-            <h1 className="pt-8 font-bold text-secondary uppercase">Testimonial</h1>
+        <section className='px-8 bg-testimonial-bg bg-no-repeat' style={{ backgroundSize: '15%', backgroundPositionX: '95%' }}>
+            <h1 className="font-bold text-secondary uppercase">Testimonial</h1>
             <h1 className="text-4xl font-bold">What Our Patients Says</h1>
-            <div className='grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 py-4 pt-10'>
+            <div className='grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 py-10'>
                 {
                     testimonials.map(testimonial =>
-                        <div key={testimonial.id} class="card card-animate pt-5 px-5 bg-base-100 shadow-2xl">
+                        <div key={testimonial.id} className="card card-animate pt-5 px-5 bg-base-100 shadow-2xl">
                             <p>{testimonial.description}</p>
-                            <div class="card-body flex-row py-6 gap-5 items-center">
-                                <figure>
-                                    <div class="rounded-full ring ring-secondary ring-offset-base-100 ring-offset-2">
-                                        <img src={testimonial.img} alt='' />
-                                    </div>
-                                </figure>
+                            <div className="card-body flex-row py-6 gap-5 items-center">
+                                <div className="w-16 hover:scale-105 rounded-full ring ring-secondary  ring-offset-2">
+                                    <img src={testimonial.img} alt='' />
+                                </div>
                                 <div>
-                                    <h2 class="card-title">{testimonial.name}</h2>
+                                    <h2 className="card-title">{testimonial.name}</h2>
                                     <h2>{testimonial.address}</h2>
                                 </div>
                             </div>

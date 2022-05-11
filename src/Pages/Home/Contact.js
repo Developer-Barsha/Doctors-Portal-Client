@@ -3,21 +3,21 @@ import SharedBtn from './../Shared/SharedBtn';
 
 const Contact = () => {
     return (
-        <div class="hero-content bg-appointment-bg flex-col lg:flex-row-reverse">
-            <div class="card flex-shrink-0 w-full max-w-sm">
+        <div className="hero-content bg-appointment-bg flex-col lg:flex-row-reverse">
+            <div className="card flex-shrink-0 w-full max-w-sm">
             <h1 className="pt-8 font-bold text-secondary text-center uppercase">Contact Us</h1>
             <h1 className="text-3xl text-white  text-center font-bold">Stay Connected With Us</h1>
-                <div class="card-body gap-3">
-                    <div class="form-control">
-                        <input type="text" placeholder="Your Email" class="input input-bordered" />
+                <div className="card-body gap-3">
+                    <div className="form-control">
+                        <input type="text" placeholder="Your Email" className="input input-bordered" />
                     </div>
-                    <div class="form-control">
-                        <input type="text" placeholder="Subject" class="input input-bordered" />
+                    <div className="form-control">
+                        <input type="text" placeholder="Subject" className="input input-bordered" />
                     </div>
-                    <div class="form-control">
-                        <textarea type="text" rows={4} placeholder="Your Message" class=" resize-none rounded-lg outline-none px-4 py-2" />
+                    <div className="form-control">
+                        <textarea type="text" rows={4} placeholder="Your Message" className=" resize-none rounded-lg outline-none px-4 py-2" />
                     </div>
-                    <div class="form-control">
+                    <div className="form-control">
                         <SharedBtn name={'Submit'}></SharedBtn>
                     </div>
                 </div>

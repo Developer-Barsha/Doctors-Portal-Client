@@ -17,7 +17,7 @@ const Services = () => {
             <h1 className="text-4xl font-bold text-center">Services We Provide</h1>
             <div className='grid sm:grid-cols-1 px-8 md:grid-cols-2 lg:grid-cols-3 gap-4 py-4 text-center'>
                 {
-                    services.map(service => <ServiceCard key={service.key} service={service} />)
+                    services.map(service => <ServiceCard key={service.id} service={service} />)
                 }
             </div>
         </section>
