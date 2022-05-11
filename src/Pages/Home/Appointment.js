@@ -3,9 +3,9 @@ import appointment from './../../assets/images/doctor-small.png'
 
 const Appointment = () => {
     return (
-        <div class="hero min-h-screen py-5 text-white">
+        <div class="hero min-h-screen py-5 text-white mt-10">
             <div class="hero-content flex-col lg:flex-row bg-appointment-bg gap-8 lg:gap-16">
-                <img src={appointment} class="max-w-sm scale-125 -mt-16 pb-6" alt='' />
+                <img src={appointment} class="max-w-sm scale-125 lg:pt-0 -mt-16 pb-6" alt='' />
                 <div>
                     <h1 class="text-xl font-bold pb-2 text-secondary">Appointment</h1>
                     <h1 class="text-3xl font-bold">Make an Appointment Today</h1>

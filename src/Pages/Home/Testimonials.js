@@ -11,9 +11,9 @@ const Testimonials = () => {
     ]
 
     return (
-        <section>
-            <h1 className="pt-8 font-bold text-secondary uppercase">OUR Testimonials</h1>
-            <h1 className="text-4xl font-bold">Testimonials We Got</h1>
+        <section className='px-8'>
+            <h1 className="pt-8 font-bold text-secondary uppercase">Testimonial</h1>
+            <h1 className="text-4xl font-bold">What Our Patients Says</h1>
             <div className='grid sm:grid-cols-1 px-8 md:grid-cols-2 lg:grid-cols-3 gap-4 py-4 text-center'>
                 {
                     testimonials.map(testimonial => 

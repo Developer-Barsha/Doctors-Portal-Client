@@ -9,8 +9,8 @@ const CustomLink=({ children, to, ...props })=> {
     return (
         <div>
             <Link
-                style={{ textDecoration: "none", color: match ? "white" : "#3A4256", background: match ? "#3A4256" : "", padding:'5px 7px', borderRadius:'5px' }}
-                // className={match ? "btn btn-asset" : "btn btn-ghost"}
+                style={{ textDecoration: "none", borderRadius:'5px' }}
+                className={match ? "bg-accent text-white py-1 px-2" : "accent"}
                 to={to}
                 {...props}
             >
