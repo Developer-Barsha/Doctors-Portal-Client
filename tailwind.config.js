@@ -6,6 +6,7 @@ module.exports = {
         'banner-bg': "url('/src/assets/images/bg.png')",
         'appointment-bg': "url('/src/assets/images/appointment.png')",
         'testimonial-bg': "url('/src/assets/icons/quote.svg')",
+        'footer-bg': "url('/src/assets/images/footer.png')"
       }
     }
   },
