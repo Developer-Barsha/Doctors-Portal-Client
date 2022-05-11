@@ -1,8 +1,7 @@
-import React, { useState } from 'react';
+import React from 'react';
 import chair from './../../assets/images/chair.png';
 import { DayPicker } from 'react-day-picker';
 import 'react-day-picker/dist/style.css';
-import { format } from 'date-fns';
 
 const css = `
   .my-selected{ 
@@ -23,10 +22,6 @@ const css = `
 
 
 const AppointmentBanner = ({date, setDate}) => {
-    const today = new Date();
-    const [date, setDate] = useState(today);
-    const selectedDate = date ? date : new Date();
-
     return (
         <div className="hero py-5 px-0 bg-banner-bg m-0">
             <div className="hero-content flex-col gap-10 m-0 lg:flex-row-reverse">
@@ -41,7 +36,6 @@ const AppointmentBanner = ({date, setDate}) => {
                             today: 'my-today'
                         }}
                         onSelect={setDate} />
-                    <p className='text-center text-primary'><b>{format(selectedDate, 'PP')}</b> </p>
 
                 </div>
             </div>

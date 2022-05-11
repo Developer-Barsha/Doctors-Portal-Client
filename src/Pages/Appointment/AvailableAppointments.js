@@ -1,7 +1,8 @@
 import React from 'react';
-import SharedBtn from './../Shared/SharedBtn'
+import SharedBtn from './../Shared/SharedBtn';
+import { format } from 'date-fns';
 
-const AvailableAppointments = () => {
+const AvailableAppointments = ({date}) => {
     const appointments = [
         {
             id: 1,
@@ -40,10 +41,11 @@ const AvailableAppointments = () => {
             seats: '12 SPACES AVAILABLE'
         },
     ]
+    const selectedDate = date ? date : new Date();
 
     return (
         <section>
-            <h2 className="pt-10 text-secondary text-center">Available Appointments on April 30, 2022</h2>
+            <h2 className="pt-10 text-secondary text-center">Available Appointments on {format(selectedDate, 'PP')}</h2>
             <div className='grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 py-6'>
                 {
                     appointments.map(appointment =>
