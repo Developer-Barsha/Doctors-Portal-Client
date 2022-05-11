@@ -49,6 +49,11 @@
     }
 }
 
+.custom-selected{
+    color: #0FCFEC;
+    border: 10px solid #19D3AE;
+}
+
 @media only screen and (max-width:800px) {
     .banner{
         flex-direction: column;

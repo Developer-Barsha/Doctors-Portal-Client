@@ -4,8 +4,8 @@ import appointment from './../../assets/images/doctor-small.png'
 
 const MakeAppointment = () => {
     return (
-        <div className="hero min-h-screen py-5 text-white bg-transparent">
-            <div className="hero-content flex-col lg:flex-row bg-appointment-bg gap-8 lg:gap-16">
+        <div className="hero min-h-screen text-white bg-transparent">
+            <div className="hero-content py-5 flex-col lg:flex-row bg-appointment-bg gap-8 lg:gap-16">
                 <img src={appointment} className="max-w-sm hidden lg:block scale-125 lg:pt-0 -mt-16 pb-6" alt='' />
                 <div>
                     <h1 className="text-xl font-bold pb-2 text-secondary">Appointment</h1>
