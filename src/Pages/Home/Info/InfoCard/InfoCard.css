@@ -1,4 +1,4 @@
-.info-card:hover{
+.card-animate:hover{
     animation: card 0.7s ease-in-out infinite;
     box-shadow: 5px 5px 20px #999;
 }

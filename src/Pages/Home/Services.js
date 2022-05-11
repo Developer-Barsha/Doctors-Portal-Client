@@ -1,7 +1,7 @@
 import React from 'react';
-import whitening from './../../../assets/images/whitening.png';
-import cavity from './../../../assets/images/cavity.png';
-import fluoride from './../../../assets/images/fluoride.png';
+import whitening from './../../assets/images/whitening.png';
+import cavity from './../../assets/images/cavity.png';
+import fluoride from './../../assets/images/fluoride.png';
 import ServiceCard from './ServiceCard';
 
 const Services = () => {

@@ -1,4 +1,5 @@
 import React from 'react';
+import SharedBtn from '../../Shared/SharedBtn';
 import chair from './../../../assets/images/chair.png';
 import './Banner.css'
 
@@ -10,8 +11,8 @@ const Banner = () => {
             </div>
             <div>
                 <h1 className='text-5xl font-bold mb-4'>Your New Smile Starts Here</h1>
-                <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the</p>
-                <button className='my-button btn btn-primary border-0 text-white font-bold mt-4 bg-gradient-to-r to-primary from-secondary'>GET STARTED</button>
+                <p className='mb-4'>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the</p>
+                <SharedBtn name={'Get Started'}/>
             </div>
         </div>
     );
