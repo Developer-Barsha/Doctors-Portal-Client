@@ -27,7 +27,7 @@
     z-index: 1000;
 }
 
-.shared-button:hover:before{
+.shared-button:not([disabled]):hover:before{
     position: absolute;
     content: "";
     width: 200%;
@@ -40,6 +40,11 @@
     inset: -3px;
 }
 
+.shared-button:disabled{
+  background: #cccccc;
+  color: gray;
+}
+
 @keyframes roll{
     0%{
         transform: rotate(0deg);
@@ -47,11 +52,6 @@
     100%{
         transform: rotate(360deg);
     }
-}
-
-.custom-selected{
-    color: #0FCFEC;
-    border: 10px solid #19D3AE;
 }
 
 @media only screen and (max-width:800px) {
