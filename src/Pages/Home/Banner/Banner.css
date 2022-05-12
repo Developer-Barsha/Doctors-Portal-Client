@@ -40,7 +40,7 @@
     inset: -3px;
 }
 
-.shared-button:disabled>h1{
+.shared-button:disabled{
   background: #cccccc;
   color: gray;
 }
