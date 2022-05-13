@@ -1,14 +1,18 @@
 import React from 'react';
 import CustomLink from './CustomLink';
+import { useAuthState } from 'react-firebase-hooks/auth';
+import auth from '../../firebase.init';
+import { signOut } from 'firebase/auth';
 
 const Navbar = () => {
+    const [user] = useAuthState(auth);
     const menuItems = <>
         <li><CustomLink to={'/'}>Home</CustomLink></li>
         <li><CustomLink to={'/services'}>Services</CustomLink></li>
         <li><CustomLink to={'/appointment'}>Appointment</CustomLink></li>
         <li><CustomLink to={'/reviews'}>Reviews</CustomLink></li>
         <li><CustomLink to={'/contact'}>Contact</CustomLink></li>
-        <li><CustomLink to={'/login'}>Login</CustomLink></li>
+        {user ? <button className='btn-sm btn btn-secondary my-auto' onClick={()=>signOut(auth)}>Sign Out</button> : <li><CustomLink to={'/login'}>Login</CustomLink></li>}
     </>;
 
     return (

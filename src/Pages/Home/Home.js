@@ -6,17 +6,19 @@ import Info from './Info/Info';
 import Services from './Services';
 import Testimonials from './Testimonials';
 import Contact from './Contact';
+import Footer from '../Shared/Footer';
 
 const Home = () => {
     return (
         <div>
-            <Banner/>
-            <Info/>
-            <Services/>
-            <Exceptional/>
-            <MakeAppointment/>
-            <Testimonials/>
-            <Contact/>
+            <Banner />
+            <Info />
+            <Services />
+            <Exceptional />
+            <MakeAppointment />
+            <Testimonials />
+            <Contact />
+            <Footer />
         </div>
     );
 };

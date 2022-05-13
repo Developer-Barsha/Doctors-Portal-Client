@@ -1,4 +1,5 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
+import Footer from '../Shared/Footer';
 import AppointmentBanner from './AppointmentBanner';
 import AvailableAppointments from './AvailableAppointments';
 
@@ -8,8 +9,9 @@ const Appointment = () => {
 
     return (
         <div className='px-5'>
-            <AppointmentBanner date={date} setDate={setDate}/>
-            <AvailableAppointments date={date}/>
+            <AppointmentBanner date={date} setDate={setDate} />
+            <AvailableAppointments date={date} />
+            <Footer />
         </div>
     );
 };

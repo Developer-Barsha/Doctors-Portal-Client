@@ -1,15 +1,17 @@
-import React, { useEffect } from 'react';
-import { Link, useLocation, useNavigate } from 'react-router-dom';
+import React, {useEffect} from 'react';
+import { useCreateUserWithEmailAndPassword } from 'react-firebase-hooks/auth';
 import auth from '../../firebase.init';
-import { useSignInWithEmailAndPassword } from 'react-firebase-hooks/auth';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { useForm } from "react-hook-form";
 import Loading from '../Shared/Loading';
 import Social from '../Shared/Social';
+import { updateProfile } from 'firebase/auth';
 
-const Login = () => {
-    const [signInWithEmailAndPassword,user,loading,error,] = useSignInWithEmailAndPassword(auth);
+const Register = () => {
+    const [createUserWithEmailAndPassword, user, loading, error] = useCreateUserWithEmailAndPassword(auth, { sendEmailVerification: true });
     const { register, formState: { errors }, handleSubmit } = useForm();
     const navigate = useNavigate();
+    let signInErrorMessage;
     const location = useLocation();
     const from = location?.state?.from?.pathname || '/';
 
@@ -19,27 +21,58 @@ const Login = () => {
         }      
     }, [user])
 
-    let signInErrorMessage;
-
+    if (user) {
+        navigate('/');
+    }
     if (loading) {
-        return <Loading/>
+        return <Loading />
     }
     if (error) {
         signInErrorMessage = <p className='text-red-500 pb-2'>{error.message}</p>;
-    }    
+    }
 
-    const onSubmit =data=> {
+    const onSubmit = async data => {
+        const name = data.name;
         const email = data.email;
         const password = data.password;
-        signInWithEmailAndPassword(email, password);  
+        await createUserWithEmailAndPassword(email, password);
+        await updateProfile({displayName: name});
+
+        if (user) {
+            navigate('/appointment');
+        }
     }
 
     return (
         <div className='lg:w-1/2 w-full md:w-3/4 p-8 mx-auto'>
             <div className="card bg-base-100 shadow-xl my-5">
                 <div className="card-body">
-                    <h1 className="text-3xl text-secondary pb-5">Please Login</h1>
+                    <h1 className="text-3xl text-secondary pb-5">Create Account</h1>
                     <form onSubmit={handleSubmit(onSubmit)} className='grid grid-cols-1'>
+                        <div className="form-control w-full">
+                            <label className="label">
+                                <span className="label-text">Name</span>
+                            </label>
+                            <input
+                                type="text"
+                                placeholder="Your Name"
+                                className="input input-bordered w-full"
+                                {...register("name", {
+                                    required: {
+                                        value: true,
+                                        message: 'Name is required'
+                                    },
+                                    minLength: {
+                                        value: 3,
+                                        message: 'Name Too Short'
+                                    }
+                                })}
+                            />
+                            <label className="label">
+                                {errors.name?.type === 'required' && <span className="label-text-alt text-red-500">{errors.name.message}</span>}
+                                {errors.name?.type === 'minLength' && <span className="label-text-alt text-red-500">{errors.name.message}</span>}
+                            </label>
+                        </div>
                         <div className="form-control w-full">
                             <label className="label">
                                 <span className="label-text">Email</span>
@@ -89,17 +122,15 @@ const Login = () => {
                             </label>
                         </div>
                         {signInErrorMessage}
-                        <input type="submit" className='w-full text-white btn' value={'Login'} />
-                        <p className='text-center pt-3'>Not Registered? <Link to={'/register'} className='text-secondary'>Register Here</Link></p>
-                        <p className='text-center pt-3'>Forgot Password? <Link to={'/register'} className='text-secondary'>Reset Password</Link></p>
+                        <input type="submit" className='w-full text-white btn' value={'Sign up'} />
+                        <p className='text-center pt-2'>Already Registered? <Link to={'/login'} className='text-secondary'>Login Here</Link></p>
                     </form>
-            <div className="divider">OR</div>
-                {/* Social here */}
-                <Social/>
+                    <div className="divider">OR</div>
+                    <Social />
                 </div>
             </div>
         </div>
     );
 };
 
-export default Login;
+export default Register;
