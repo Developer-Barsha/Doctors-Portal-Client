@@ -1,46 +1,45 @@
-import React, {useEffect} from 'react';
-import { useCreateUserWithEmailAndPassword } from 'react-firebase-hooks/auth';
+import React, { useEffect } from 'react';
+import { useCreateUserWithEmailAndPassword, useUpdateProfile } from 'react-firebase-hooks/auth';
 import auth from '../../firebase.init';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { useForm } from "react-hook-form";
 import Loading from '../Shared/Loading';
 import Social from '../Shared/Social';
-import { updateProfile } from 'firebase/auth';
 
 const Register = () => {
     const [createUserWithEmailAndPassword, user, loading, error] = useCreateUserWithEmailAndPassword(auth, { sendEmailVerification: true });
+    const [updateProfile, updating] = useUpdateProfile(auth);
     const { register, formState: { errors }, handleSubmit } = useForm();
     const navigate = useNavigate();
     let signInErrorMessage;
     const location = useLocation();
     const from = location?.state?.from?.pathname || '/';
-
-    useEffect(()=>{
+    useEffect(() => {
         if (user) {
-            navigate(from, {replace:true});
-        }      
+            navigate(from, { replace: true });
+        }
+    }, [])
+
+    useEffect(() => {
+        if (user) {
+            navigate(from, { replace: true });
+        }
     }, [user])
 
-    if (user) {
-        navigate('/');
-    }
-    if (loading) {
+    if (loading || updating) {
         return <Loading />
     }
     if (error) {
         signInErrorMessage = <p className='text-red-500 pb-2'>{error.message}</p>;
     }
 
+
     const onSubmit = async data => {
         const name = data.name;
         const email = data.email;
         const password = data.password;
         await createUserWithEmailAndPassword(email, password);
-        await updateProfile({displayName: name});
-
-        if (user) {
-            navigate('/appointment');
-        }
+        await updateProfile({ displayName: name });
     }
 
     return (

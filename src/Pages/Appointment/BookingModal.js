@@ -1,9 +1,12 @@
 import { format } from 'date-fns';
 import React from 'react';
+import { useAuthState } from 'react-firebase-hooks/auth';
+import auth from '../../firebase.init';
 
 const BookingModal = ({ treatment, date, setTreatment }) => {
     const theDate = format(date, 'PP');
     const {_id, name, slots} = treatment;
+    const [user] = useAuthState(auth);
 
     const handleBooking=e=>{
         e.preventDefault();
@@ -13,7 +16,7 @@ const BookingModal = ({ treatment, date, setTreatment }) => {
         const slot = e.target.slot.value;
 
         setTreatment(null)
-        console.log(_id, name, email, phone, slot);
+        console.log(_id, name, email, phone, slot, user.displayName);
     }
 
     return (
@@ -27,12 +30,12 @@ const BookingModal = ({ treatment, date, setTreatment }) => {
                     <form onSubmit={handleBooking} className='grid grid-cols-1 gap-4'>
                         <input type="text" className='w-full outline-none rounded p-2 py-1 bg-slate-200' value={theDate} />
                         <select name='slot' className="select select-bordered w-full">
-                            {slots.map(slot=><option value={slot}>{slot}</option>)}
+                            {slots.map((slot, index)=><option key={index} value={slot}>{slot}</option>)}
                         </select>
-                        <input type="text" name='name' className='w-full rounded p-2 py-1 outline-none border-2' placeholder={'Full Name'} />
+                        <input type="text" name='name' value={user?.displayName || ''} className='w-full rounded p-2 py-1 outline-none border-2' disabled />
+                        <input type="email" name='email' className='w-full rounded p-2 py-1 outline-none border-2' value={user?.email || ''} disabled  />
                         <input type="number" name='phone' className='w-full rounded p-2 py-1 outline-none border-2' placeholder={'Phone Number'} />
-                        <input type="email" name='email' className='w-full rounded p-2 py-1 outline-none border-2' placeholder={'Email'} />
-                        <input type="submit" className='w-full text-white btn p-0' value={'Submit'} />
+                        <input type="submit" className='w-full text-white btn p-0' value={'Book Appointment'} />
                     </form>
 
                     {/* <div className="modal-action">

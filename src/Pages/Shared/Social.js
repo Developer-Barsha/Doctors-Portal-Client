@@ -25,11 +25,7 @@ const Social = () => {
     }
 
     const handleGoogleSignIn = () => {
-        signInWithGoogle()
-
-        if (gUser) {
-            navigate('/');
-        }
+        signInWithGoogle();
     }
 
     return (
