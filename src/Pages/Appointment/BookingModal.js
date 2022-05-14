@@ -4,19 +4,27 @@ import { useAuthState } from 'react-firebase-hooks/auth';
 import auth from '../../firebase.init';
 
 const BookingModal = ({ treatment, date, setTreatment }) => {
-    const theDate = format(date, 'PP');
+    const formattedDate = format(date, 'PP');
     const {_id, name, slots} = treatment;
     const [user] = useAuthState(auth);
 
     const handleBooking=e=>{
         e.preventDefault();
-        const name = e.target.name.value;
         const email = e.target.email.value;
         const phone = e.target.phone.value;
         const slot = e.target.slot.value;
 
+        const booking = {
+            treatmentId: _id,
+            treatment: name,
+            date : formattedDate,
+            slot: slot,
+            patient: email,
+            patientname: user?.displayName,
+            phone : phone,
+        }
+
         setTreatment(null)
-        console.log(_id, name, email, phone, slot, user.displayName);
     }
 
     return (
@@ -28,7 +36,7 @@ const BookingModal = ({ treatment, date, setTreatment }) => {
                     <h3 className="font-bold text-lg mb-4">Booking For : <span className='text-secondary font-bold'>{name}</span></h3>
 
                     <form onSubmit={handleBooking} className='grid grid-cols-1 gap-4'>
-                        <input type="text" className='w-full outline-none rounded p-2 py-1 bg-slate-200' value={theDate} />
+                        <input type="text" className='w-full outline-none rounded p-2 py-1 bg-slate-200' value={formattedDate} />
                         <select name='slot' className="select select-bordered w-full">
                             {slots.map((slot, index)=><option key={index} value={slot}>{slot}</option>)}
                         </select>
