@@ -4,19 +4,19 @@ import Service from './Service';
 import BookingModal from './BookingModal';
 
 const AvailableAppointments = ({ date }) => {
-    const selectedDate = date ? date : new Date();
+    const formattedDate = format(date, 'PP');
     const [services, setServices] = useState([]);
     const [treatment, setTreatment] = useState(null);
 
     useEffect(() => {
-        fetch('http://localhost:5000/service')
+        fetch('http://localhost:5000/available?date='+formattedDate)
             .then(res => res.json())
             .then(data => setServices(data))
-    }, [])
+    }, [formattedDate])
 
     return (
         <section>
-            <h2 className="pt-10 text-secondary text-center">Available Appointments on {format(selectedDate, 'PP')}</h2>
+            <h2 className="pt-10 text-secondary text-center">Available Appointments on {formattedDate}</h2>
             <div className='grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 py-6'>
                 {
                     services.map(service =>
@@ -26,7 +26,7 @@ const AvailableAppointments = ({ date }) => {
                             setTreatment={setTreatment}
                         />)
                 }
-            {treatment && <BookingModal date={selectedDate} treatment={treatment} setTreatment={setTreatment} />}
+            {treatment && <BookingModal date={date} treatment={treatment} setTreatment={setTreatment} />}
             </div>
         </section >
     );
