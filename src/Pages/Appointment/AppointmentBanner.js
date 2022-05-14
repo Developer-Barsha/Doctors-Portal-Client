@@ -23,7 +23,7 @@ const css = `
 
 const AppointmentBanner = ({date, setDate}) => {
     return (
-        <div className="hero py-5 px-0 bg-banner-bg m-0">
+        <div className="hero py-5 lg:px-0 bg-banner-bg m-0">
             <div className="hero-content flex-col gap-10 m-0 lg:flex-row-reverse">
                 <img src={chair} className="lg:max-w-lg sm:max-w-sm rounded-lg ease-in-out duration-300 hover:shadow-2xl" alt='Dentist Chair'/>
                 <div className='rounded-lg shadow-2xl p-3 m-0 bg-white'>
