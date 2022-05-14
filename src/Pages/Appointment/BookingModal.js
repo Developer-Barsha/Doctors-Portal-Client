@@ -2,6 +2,7 @@ import { format } from 'date-fns';
 import React from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import auth from '../../firebase.init';
+import { toast } from 'react-toastify';
 
 const BookingModal = ({ treatment, date, setTreatment }) => {
     const formattedDate = format(date, 'PP');
@@ -24,7 +25,21 @@ const BookingModal = ({ treatment, date, setTreatment }) => {
             phone : phone,
         }
 
-        setTreatment(null)
+        fetch('http://localhost:5000/booking', {
+            method:'POST',
+            headers:{
+                'content-type':'application/json'
+            },
+            body: JSON.stringify(booking)
+        })
+        .then(res=>res.json())
+        .then(data=>{
+            console.log(data)
+            toast.success('Your appointment is booked!');
+            
+            // to close the modal
+            setTreatment(null)
+        })
     }
 
     return (
@@ -36,19 +51,15 @@ const BookingModal = ({ treatment, date, setTreatment }) => {
                     <h3 className="font-bold text-lg mb-4">Booking For : <span className='text-secondary font-bold'>{name}</span></h3>
 
                     <form onSubmit={handleBooking} className='grid grid-cols-1 gap-4'>
-                        <input type="text" className='w-full outline-none rounded p-2 py-1 bg-slate-200' value={formattedDate} />
-                        <select name='slot' className="select select-bordered w-full">
+                        <input type="text" className='w-full outline-none rounded p-2 py-1 bg-slate-200' value={formattedDate} required/>
+                        <select name='slot' className="select select-bordered w-full" required>
                             {slots.map((slot, index)=><option key={index} value={slot}>{slot}</option>)}
                         </select>
-                        <input type="text" name='name' value={user?.displayName || ''} className='w-full rounded p-2 py-1 outline-none border-2' disabled />
-                        <input type="email" name='email' className='w-full rounded p-2 py-1 outline-none border-2' value={user?.email || ''} disabled  />
-                        <input type="number" name='phone' className='w-full rounded p-2 py-1 outline-none border-2' placeholder={'Phone Number'} />
-                        <input type="submit" className='w-full text-white btn p-0' value={'Book Appointment'} />
+                        <input type="text" name='name' value={user?.displayName || ''} className='w-full rounded p-2 py-1 outline-none border-2' disabled required/>
+                        <input type="email" name='email' className='w-full rounded p-2 py-1 outline-none border-2' value={user?.email || ''} disabled required/>
+                        <input type="number" name='phone' className='w-full rounded p-2 py-1 outline-none border-2' placeholder={'Phone Number'} required/>
+                        <input type="submit" className='w-full text-white btn p-0' value={'Book Appointment'} required/>
                     </form>
-
-                    {/* <div className="modal-action">
-                        <label for="booking-modal" className="btn">Yay!</label>
-                    </div> */}
                 </div>
             </div>
         </div>
