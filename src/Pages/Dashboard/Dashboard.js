@@ -5,14 +5,14 @@ const Dashboard = () => {
     return (
         <div className="drawer drawer-mobile">
             <input id="dashboard-sidebar" type="checkbox" className="drawer-toggle" />
-            <div className="drawer-content">
+            <div className="drawer-content p-3">
                 <h2 className='text-3xl font-bold text-purple-500'>Welcome to your Dashboard</h2>
                 <Outlet/>
 
             </div>
             <div className="drawer-side">
                 <label for="dashboard-sidebar" className="drawer-overlay"></label>
-                <ul className="menu bg-accent text-white p-4 overflow-y-auto w-80">
+                <ul className="menu bg-accent text-white p-4 overflow-y-auto w-48">
                     
                     <li><Link to={'/dashboard'}>My Appointment</Link></li>
                     <li><Link to={'/dashboard/review'}>My Review</Link></li>

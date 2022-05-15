@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useRef } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import auth from '../../firebase.init';
 import { useSignInWithEmailAndPassword, useSendPasswordResetEmail } from 'react-firebase-hooks/auth';
@@ -13,6 +13,7 @@ const Login = () => {
     const navigate = useNavigate();
     const location = useLocation();
     const from = location?.state?.from?.pathname || '/';
+    const emailRef = useRef('');
 
     useEffect(() => {
         if (user) {
@@ -28,7 +29,6 @@ const Login = () => {
     if (error || resetError) {
         signInErrorMessage = <p className='text-red-500 pb-2'>{error.message || resetError?.message}</p>;
     }
-    const emailRef = '';
     const onSubmit = data => {
         const email = data.email;
         const password = data.password;
@@ -47,7 +47,7 @@ const Login = () => {
                             </label>
                             <input
                                 type="email"
-                                ref={emailRef}
+                                name='email'
                                 placeholder="Your Email"
                                 className="input input-bordered w-full"
                                 {...register("email", {
@@ -93,10 +93,10 @@ const Login = () => {
                         {signInErrorMessage}
                         <input type="submit" className='w-full text-white btn' value={'Login'} />
                         <p className='text-center pt-3'>Not Registered? <Link to={'/register'} className='text-secondary'>Register Here</Link></p>
-                        <p className='text-center pt-3'>Forgot Password? <button onClick={async () => {
+                        <p className='text-center pt-3'>Forgot Password? <button onClick={() => {
                             // await sendPasswordResetEmail(emailRef);
                             // alert('Sent email');
-                            console.log(emailRef);
+                            console.log('email', emailRef.current);
                         }} className='text-secondary'>Reset Password</button></p>
                     </form>
                     <div className="divider">OR</div>
