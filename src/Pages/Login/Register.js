@@ -5,26 +5,25 @@ import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { useForm } from "react-hook-form";
 import Loading from '../Shared/Loading';
 import Social from '../Shared/Social';
+import useToken from '../../hooks/useToken';
 
 const Register = () => {
     const [createUserWithEmailAndPassword, user, loading, error] = useCreateUserWithEmailAndPassword(auth, { sendEmailVerification: true });
-    const [updateProfile, updating] = useUpdateProfile(auth);
     const { register, formState: { errors }, handleSubmit } = useForm();
+    const [updateProfile, updating] = useUpdateProfile(auth);
     const navigate = useNavigate();
     let signInErrorMessage;
     const location = useLocation();
     const from = location?.state?.from?.pathname || '/';
-    useEffect(() => {
-        if (user) {
-            navigate(from, { replace: true });
-        }
-    }, [])
 
-    useEffect(() => {
-        if (user) {
+    const [token] = useToken(user);
+
+    useEffect(()=>{
+        if (token) {
             navigate(from, { replace: true });
         }
-    }, [user])
+    } ,[token, from, navigate])
+
 
     if (loading || updating) {
         return <Loading />

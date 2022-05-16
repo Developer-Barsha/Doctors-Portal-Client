@@ -13,7 +13,10 @@ const Navbar = () => {
         <li><CustomLink to={'/reviews'}>Reviews</CustomLink></li>
         <li><CustomLink to={'/contact'}>Contact</CustomLink></li>
         {user && <li><CustomLink to={'/dashboard'}>Dashboard</CustomLink></li>}
-        {user ? <button className='btn-sm btn btn-secondary my-auto' onClick={() => signOut(auth)}>Sign Out</button> : <li><CustomLink to={'/login'}>Login</CustomLink></li>}
+        {user ? <button className='btn-sm btn btn-secondary my-auto' onClick={() => {
+            signOut(auth)
+            localStorage.removeItem('accessToken')
+        }}>Sign Out</button> : <li><CustomLink to={'/login'}>Login</CustomLink></li>}
     </>;
 
     return (

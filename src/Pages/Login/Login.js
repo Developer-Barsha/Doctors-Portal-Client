@@ -1,34 +1,40 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import auth from '../../firebase.init';
-import { useSignInWithEmailAndPassword, useSendPasswordResetEmail } from 'react-firebase-hooks/auth';
+import { useSignInWithEmailAndPassword } from 'react-firebase-hooks/auth';
+// import { useSignInWithEmailAndPassword, useSendPasswordResetEmail } from 'react-firebase-hooks/auth';
 import { useForm } from "react-hook-form";
 import Loading from '../Shared/Loading';
 import Social from '../Shared/Social';
+import useToken from '../../hooks/useToken';
 
 const Login = () => {
     const [signInWithEmailAndPassword, user, loading, error] = useSignInWithEmailAndPassword(auth);
-    const [sendPasswordResetEmail, sending, resetError] = useSendPasswordResetEmail(auth);
+    // const emailRef = useRef('');
+    // const [sendPasswordResetEmail, sending, resetError] = useSendPasswordResetEmail(auth);
     const { register, formState: { errors }, handleSubmit } = useForm();
     const navigate = useNavigate();
     const location = useLocation();
     const from = location?.state?.from?.pathname || '/';
-    const emailRef = useRef('');
+    const [token] = useToken(user);
 
-    useEffect(() => {
-        if (user) {
+    useEffect(()=>{
+        if (token) {
             navigate(from, { replace: true });
         }
-    }, [user])
+    } ,[token, from, navigate])
 
     let signInErrorMessage;
 
     if (loading) {
         return <Loading />
     }
-    if (error || resetError) {
-        signInErrorMessage = <p className='text-red-500 pb-2'>{error.message || resetError?.message}</p>;
+    if (error) {
+        signInErrorMessage = <p className='text-red-500 pb-2'>{error.message}</p>;
     }
+    // if (error || resetError) {
+    //     signInErrorMessage = <p className='text-red-500 pb-2'>{error.message || resetError?.message}</p>;
+    // }
     const onSubmit = data => {
         const email = data.email;
         const password = data.password;
@@ -96,7 +102,7 @@ const Login = () => {
                         <p className='text-center pt-3'>Forgot Password? <button onClick={() => {
                             // await sendPasswordResetEmail(emailRef);
                             // alert('Sent email');
-                            console.log('email', emailRef.current);
+                            // console.log('email', emailRef.current);
                         }} className='text-secondary'>Reset Password</button></p>
                     </form>
                     <div className="divider">OR</div>
