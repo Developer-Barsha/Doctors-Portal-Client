@@ -5,8 +5,8 @@ import auth from '../../firebase.init';
 import { toast } from 'react-toastify';
 
 const BookingModal = ({ treatment, date, setTreatment, refetch }) => {
+    const {_id, name, slots, price} = treatment;
     const formattedDate = format(date, 'PP');
-    const {_id, name, slots} = treatment;
     const [user] = useAuthState(auth);
 
     const handleBooking=e=>{
@@ -20,6 +20,7 @@ const BookingModal = ({ treatment, date, setTreatment, refetch }) => {
             treatment: name,
             date : formattedDate,
             slot: slot,
+            price,
             patient: email,
             patientname: user?.displayName,
             phone : phone,
