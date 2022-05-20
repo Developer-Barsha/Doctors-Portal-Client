@@ -28,7 +28,9 @@ function App() {
         <Route path='/' element={<Home />}/>
         <Route path='/home' element={<Home />}/>
         <Route path='/appointment' element={<RequireAuth><Appointment /></RequireAuth>}/>
-        <Route path='/dashboard/payment/:treatmentId' element={<RequireAuth><Payment/></RequireAuth>}/>
+        <Route path='/about' element={<About />}/>
+        <Route path='/login' element={<Login />}/>
+        <Route path='/register' element={<Register />}/>
 
       {/* Dashboard nested route here */}
         <Route path='/dashboard' element={<RequireAuth><Dashboard /></RequireAuth>}>
@@ -38,12 +40,8 @@ function App() {
           <Route path='users' element={<RequireAdmin><Users/></RequireAdmin>} />
           <Route path='addDoctor' element={<RequireAdmin><AddDoctor/></RequireAdmin>} />
           <Route path='manageDoctors' element={<RequireAdmin><ManageDoctors/></RequireAdmin>} />
+        <Route path='/dashboard/payment/:id' element={<RequireAuth><Payment/></RequireAuth>}/>
         </Route>
-
-      {/* Normal routes here */}
-        <Route path='/about' element={<About />}/>
-        <Route path='/login' element={<Login />}/>
-        <Route path='/register' element={<Register />}/>
       </Routes>
 
       {/* toastcontainer here */}
